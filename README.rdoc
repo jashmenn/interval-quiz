@@ -1,0 +1,3 @@
+== interval-quiz
+
+A gem that provides...

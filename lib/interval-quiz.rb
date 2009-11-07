@@ -51,20 +51,17 @@ class Quiz
       real_answer = pitch + interval
 
       if answer.downcase == real_answer.to_short_name.downcase
-        puts "correct!"
+        say "<%= color('correct!', :green) %>"
         self.correct = correct + 1
       else
-        puts "wrong. the answer is #{real_answer.to_short_name}"
+        say "<%= color('wrong', :red) %>. the answer is #{real_answer.to_short_name}"
       end
     end
   end
 
   def score_str
-    if asked && asked > 0
-      "#{correct}/#{asked} (%d%%)" % [(correct.to_f / asked.to_f) * 100]
-    else
-      ""
-    end
+    return "" unless asked && asked > 0
+    "#{correct}/#{asked} (%d%%)" % [(correct.to_f / asked.to_f) * 100]
   end
 
 end

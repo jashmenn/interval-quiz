@@ -24,6 +24,13 @@ class Quiz
 
   attr_accessor :intervals  # which intervals we will quiz on
   attr_accessor :abovebelow # array of ["", "-"] if "-" is present, then we are quizzing on intervals below
+  attr_accessor :asked
+  attr_accessor :correct
+
+  def initialize
+    self.asked = 0
+    self.correct = 0
+  end
 
   def run!
     loop do
@@ -34,7 +41,8 @@ class Quiz
       interval = Interval::Interval.from_string(ab + self.intervals.rand)
 
       begin
-        answer = ask("what is a #{interval.to_long_name.downcase} #{ab_eng} #{pitch.to_s} ? ")
+        answer = ask("what is a #{interval.to_long_name.downcase} #{ab_eng} #{pitch.to_s} #{score_str}? ")
+        self.asked = self.asked + 1
       rescue EOFError 
         puts "goodbye"
         exit
@@ -44,9 +52,18 @@ class Quiz
 
       if answer.downcase == real_answer.to_short_name.downcase
         puts "correct!"
+        self.correct = correct + 1
       else
         puts "wrong. the answer is #{real_answer.to_short_name}"
       end
+    end
+  end
+
+  def score_str
+    if asked && asked > 0
+      "#{correct}/#{asked} (%d%%)" % [(correct.to_f / asked.to_f) * 100]
+    else
+      ""
     end
   end
 

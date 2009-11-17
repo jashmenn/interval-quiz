@@ -1,3 +1,4 @@
-== interval-quiz
+interval-quiz
+=============
 
-A gem that provides...
+A gem that provides a quiz on musical intervals.

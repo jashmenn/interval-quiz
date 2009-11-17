@@ -4,25 +4,29 @@ require 'rubygems/specification'
 require 'date'
 require 'spec/rake/spectask'
 
+GEM = "interval-quiz"
+GEM_VERSION = "0.0.1"
+
 spec = Gem::Specification.new do |s|
-  s.name = "interval-quiz"
-  s.version = "0.0.1"
-  s.author = "Your Name"
-  s.email = "Your Email"
-  s.homepage = "http://example.com"
-  s.description = s.summary = "A gem that provides..."
+  s.name = GEM
+  s.version = GEM_VERSION
+  s.author = "Nate Murray"
+  s.email = "nate@natemurray.com"
+  s.homepage = "http://www.xcombinator.com"
+  s.description = s.summary = "A gem that provides a quiz on musical intervals"
   
   s.platform = Gem::Platform::RUBY
   s.has_rdoc = true
-  s.extra_rdoc_files = ["README", "LICENSE", 'TODO']
+  s.extra_rdoc_files = ["README.mkd", "LICENSE"]
   s.summary = "a quiz for musical intervals"
+  s.bindir = "bin"
+  s.executables = ['interval-quiz']
   
   # Uncomment this to add a dependency
-  # s.add_dependency "foo"
+  s.add_dependency "interval"
   
   s.require_path = 'lib'
-  # s.autorequire = GEM
-  s.files = %w(LICENSE README Rakefile TODO) + Dir.glob("{lib,spec}/**/*")
+  s.files = %w(LICENSE README.mkd Rakefile) + Dir.glob("{lib,spec,bin}/**/*")
 end
 
 task :default => :spec

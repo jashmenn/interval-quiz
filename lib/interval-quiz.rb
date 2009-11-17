@@ -26,16 +26,18 @@ class Quiz
   attr_accessor :abovebelow # array of ["", "-"] if "-" is present, then we are quizzing on intervals below
   attr_accessor :asked
   attr_accessor :correct
+  attr_accessor :natural
 
   def initialize
     self.asked = 0
     self.correct = 0
+    self.natural = true
   end
 
   def run!
     loop do
 
-      pitch = Interval::Pitch.random 
+      pitch = Interval::Pitch.random(self.natural)
       ab = self.abovebelow.rand
       ab_eng = ab == "-" ? "below" : "above"
       interval = Interval::Interval.from_string(ab + self.intervals.rand)
@@ -75,7 +77,7 @@ unison  p1        a1
 second  m2 M2  d2 a2
 third   m3 M3  d3 a3 
 fourth  p4     d4 a4
-fifth   d5 p5  d4 a5
+fifth   d5 p5  d5 a5
 sixth   m6 M6  d6 a6
 seventh m7 M7  d7 a7
 octave  p8     d8

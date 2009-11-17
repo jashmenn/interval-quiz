@@ -1,1 +1,2 @@
- s.executables = ['maruku','marutex']
+.autosession.vim
+pkg

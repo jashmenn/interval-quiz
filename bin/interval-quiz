@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+# load development libs if they exist
+[File.dirname(__FILE__) + "/../../interval/lib", File.dirname(__FILE__) + "/../lib"].each do |path|
+  $:.unshift(path) if File.exists?(path)
+end
+require "rubygems"
+require "interval"
+require "interval-quiz"
+
+quiz = IntervalQuiz.new
+quiz.run!
